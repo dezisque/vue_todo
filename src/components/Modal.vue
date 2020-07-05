@@ -14,7 +14,7 @@
         </button>
         <button class="discard" @click="$emit('close')">
           <!--Закрываем modal -->
-          {{ text.discard }}
+          Назад
         </button>
       </div>
     </div>

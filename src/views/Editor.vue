@@ -15,15 +15,18 @@
         </p>
       </div>
       <div class="edit__name">
-        <h2 class="edit__name_title">
+        <label for="title" class="edit__name_title">
           Название заметки:
-        </h2>
-        <input
-          type="text"
-          class="edit__name_input"
-          :placeholder="note.title"
-          v-model="note.title"
-        />
+        </label>
+        <label>
+          <input
+            name="title"
+            type="text"
+            class="edit__name_input"
+            :placeholder="note.title"
+            v-model="note.title"
+          />
+        </label>
       </div>
       <TodosEditor :note="note"></TodosEditor>
 
@@ -76,34 +79,38 @@ export default {
     this.pure_note = JSON.parse(JSON.stringify(this.note));
   },
   methods: {
+    ModalText(type, title, subtitle, apply) {
+      //Modal constructor class
+      this.type = type || "";
+      this.title = title || "";
+      this.subtitle = subtitle || "";
+      this.apply = apply || "Ок";
+    },
     resetNoteQuestion() {
-      this.modalText = {
-        type: "reset",
-        title: "Обновить заметку?",
-        subtitle: "Осторожно! Заметка будет обновлена до начального состояния!",
-        apply: "Обновить",
-        discard: "Назад",
-      };
+      this.modalText = new this.ModalText(
+        "reset",
+        "Обновить заметку?",
+        "Осторожно! Заметка будет обновлена до начального состояния!",
+        "Обновить"
+      );
       this.showModal = true; // открываем модалку для сброса
     },
     deleteNoteQuestion() {
-      this.modalText = {
-        type: "delete",
-        title: "Удалить заметку?",
-        subtitle: "Осторожно! Заметка удалится навсегда!",
-        apply: "Удалить",
-        discard: "Назад",
-      };
+      this.modalText = new this.ModalText(
+        "delete",
+        "Удалить заметку?",
+        "Осторожно! Заметка удалится навсегда!",
+        "Удалить"
+      );
       this.showModal = true; // открываем модалку для удаления
     },
     saveNoteQuestion() {
-      this.modalText = {
-        type: "save",
-        title: "Сохранить заметку?",
-        subtitle: "Осторожно! Все данные сейчас обновятся!",
-        apply: "Сохранить",
-        discard: "Назад",
-      };
+      this.modalText = new this.ModalText(
+        "save",
+        "Сохранить заметку?",
+        "Осторожно! Все данные сейчас обновятся!",
+        "Сохранить"
+      );
       this.showModal = true; // открываем модалку для сохранения
     },
     saveNote() {
@@ -111,7 +118,7 @@ export default {
         // если валидно
         let notesArray = JSON.parse(localStorage.notes); // берем из localStorage массив записей
         let index = notesArray.findIndex((item) => item._id === this.note._id); // ищем индекс совпадения по id
-        if (index != -1) notesArray[index] = this.note;
+        if (index >= 0) notesArray[index] = this.note;
         // если такой id есть, то заменяем запись
         else notesArray.push(this.note); // если есть - добавляем новую
         localStorage.notes = JSON.stringify(notesArray); // забрасываем обратно в localStorage
@@ -122,7 +129,7 @@ export default {
       if (!localStorage.notes) localStorage.notes = JSON.stringify([]);
       let notesArray = JSON.parse(localStorage.notes);
       let index = notesArray.findIndex((item) => item._id === this.note._id);
-      if (index != -1) {
+      if (index >= 0) {
         // если нашли такой id в notes, то удаляем
         notesArray.splice(index, 1);
         localStorage.notes = JSON.stringify(notesArray);
