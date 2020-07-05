@@ -9,29 +9,29 @@
 </template>
 
 <script>
-
 export default {
-  name: 'App'
-}
+  name: "App",
+};
 </script>
 
 <style>
-  body, html{
-    padding: 0;
-    margin: 0;
-  }
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
-  nav{
-    border-bottom: 2px solid black;
-  }
-  .nav_title{
-    font-size: 3rem;
-    margin: 1rem 0;
-  }
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+nav {
+  border-bottom: 2px solid black;
+}
+.nav_title {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
 </style>
