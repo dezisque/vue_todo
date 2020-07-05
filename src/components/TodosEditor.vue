@@ -6,9 +6,9 @@
       </h3>
       <ul class="edit__todos_list">
         <li
-                v-for="(todo, index) in note.todos || 1"
-                :key="index"
-                class="todos__list_item"
+          v-for="(todo, index) in note.todos || 1"
+          :key="index"
+          class="todos__list_item"
         >
           <Todo :todo="todo" @deleteTODO="deleteTODO(index)"></Todo>
         </li>
@@ -61,7 +61,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.add__new_todo{
+.add__new_todo {
   background-color: #fff;
   border: 2px solid black;
   padding: 0.5rem 1rem;

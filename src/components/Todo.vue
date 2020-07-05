@@ -5,7 +5,12 @@
       alt="delete_icon"
       @click="$emit('deleteTODO')"
     />
-    <input type="checkbox" tabindex="-1" :checked="todo.completed" v-model="todo.completed" />
+    <input
+      type="checkbox"
+      tabindex="-1"
+      :checked="todo.completed"
+      v-model="todo.completed"
+    />
     <input
       type="text"
       class="list__item_input"

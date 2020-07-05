@@ -63,7 +63,7 @@ export default {
       showModal: false,
       note: this.noteProp || {
         // вид объекта записи
-        _id: localStorage.maxId || 1,
+        _id: new Date().valueOf(),
         title: "",
         todos: [{}],
         completed: false,
@@ -115,7 +115,6 @@ export default {
         // если такой id есть, то заменяем запись
         else notesArray.push(this.note); // если есть - добавляем новую
         localStorage.notes = JSON.stringify(notesArray); // забрасываем обратно в localStorage
-        localStorage.maxId++; // id++
         this.$router.push("/"); // выходим на главную
       } else this.showModal = false; // если есть ошибки - закрываем modal
     },

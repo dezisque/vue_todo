@@ -10,6 +10,7 @@
         Тут пока ничего нет :(<br />Создайте новую заметку!
       </h2>
       <div
+        v-else
         v-for="(item, index) in notesList"
         :key="item._id"
         class="note"
@@ -52,7 +53,6 @@ export default {
   },
   created() {
     // Храню данные в localStorage
-    if (!localStorage.maxId) localStorage.maxId = 1; // Для генерации ID
     if (!localStorage.notes) localStorage.notes = JSON.stringify([]); // Массив объектов notes в JSON'e
     this.notesList = JSON.parse(localStorage.notes);
   },
