@@ -15,9 +15,9 @@
         </p>
       </div>
       <div class="edit__name">
-        <label for="title" class="edit__name_title">
+        <h2 class="edit__name_title">
           Название заметки:
-        </label>
+        </h2>
         <label>
           <input
             name="title"

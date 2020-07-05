@@ -5,13 +5,21 @@
         <button class="new__note_button">Создать новую заметку</button>
       </router-link>
     </div>
+    <div class="filter__notes">
+      <span class="filter__title">Показать: </span>
+      <select name="notes_filter" id="notes_filter" v-model="filterName">
+        <option value="all">Все</option>
+        <option value="completed">Завершенные</option>
+        <option value="not_completed">Не завершенные</option>
+      </select>
+    </div>
     <div class="notes__wrapper">
-      <h2 v-if="!notesList.length" class="nothing_title">
-        Тут пока ничего нет :(<br />Создайте новую заметку!
+      <h2 v-if="!sortedNotes.length" class="nothing_title">
+        Тут пока ничего нет :(
       </h2>
       <div
         v-else
-        v-for="(item, index) in notesList"
+        v-for="(item, index) in sortedNotes"
         :key="item._id"
         class="note"
         :style="'border-color:' + (isCompleted(item.todos) ? 'green' : 'red')"
@@ -49,7 +57,20 @@ export default {
   data() {
     return {
       notesList: [],
+      filterName: 'all'
     };
+  },
+  computed:{
+    sortedNotes(){
+      switch (this.filterName) {
+        case "completed":
+          return this.notesList.filter(it => it.completed === true)
+        case "not_completed":
+          return this.notesList.filter(it => it.completed === false)
+        default:
+          return this.notesList
+      }
+    }
   },
   created() {
     // Храню данные в localStorage
